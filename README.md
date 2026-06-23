@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 BASEWEB v0.2.0 - Dashboard Administrativo
 
-## Getting Started
+Panel administrativo moderno para gestión de barbería/salón con **modo de demostración** y **export estático**.
 
-First, run the development server:
+## 🎯 Características Principales
 
+### ✨ Modo Demostración
+- **Botón dedicado** en la página de login: "📊 Ver Demostración"
+- **Sin autenticación requerida** - acceso inmediato
+- **Datos completamente realistas**:
+  - 15+ citas de ejemplo
+  - 5 miembros del personal
+  - 10 productos en inventario
+  - 2 sucursales
+  - 12 usuarios con roles variados
+
+### 📈 Dashboard Completo
+- **Vista Financiera General** con desglose por mes
+- **Cajas separadas** (Recepción vs Personal)
+- **4 Métricas principales** (Ingresos, Citas, Personal, Inventario)
+- **Gráfico de ingresos semanal** interactivo
+- **Administración de secciones**:
+  - Citas y Agenda
+  - Personal activo
+  - Inventario crítico
+  - Clientes, Productos, Finanzas
+  - Y más...
+
+### 🌐 Web Estática Optimizada
+- **Export estático** con Next.js 16
+- **Compresión gzip**: 4.1MB → 0.39MB (74.1% de reducción)
+- **19 páginas HTML** precompiladas
+- **Listo para desplegar** en cualquier servidor
+
+## 🚀 Quick Start
+
+### Desarrollo Local
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Visita http://localhost:3000/login
+# Haz clic en "📊 Ver Demostración"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build Estático
+```bash
+npm run build:prod
+# Genera carpeta 'out/' con todo optimizado
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 Datos de Demostración
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 👥 Personal (5 miembros)
+- Miguel Vázquez - Barbero
+- Sofía Ramírez - Estilista
+- Diego Torres - Barbero
+- Valentina López - Estilista
+- Andrea Morales - Recepcionista
 
-## Learn More
+### 📦 Productos (10 items)
+Productos realistas con stock variado, algunos críticos
 
-To learn more about Next.js, take a look at the following resources:
+### 🏪 Sucursales (2)
+- Sucursal Centro
+- Sucursal Norte
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 📅 Citas (15+)
+Citas distribuidas hoy, últimos 6 días, y mes actual
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Scripts
 
-## Deploy on Vercel
+```bash
+npm run dev              # Desarrollo
+npm run build           # Build estático
+npm run build:prod      # Build + compresión gzip
+npm run optimize        # Compresión gzip
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📦 Estadísticas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Métrica | Valor |
+|---------|-------|
+| Build Time | 2.1s |
+| Tamaño Original | 4.1MB |
+| Tamaño Comprimido | 0.39MB |
+| Compresión | 74.1% |
+| Páginas | 19 |
+| Archivos .gz | 63 |
+
+## 🌐 Desplegar
+
+### Vercel (Recomendado)
+```bash
+vercel --prod
+```
+
+### Apache
+```bash
+scp -r out/* user@server:/var/www/html/baseweb/
+```
+
+### Netlify
+```bash
+netlify deploy --prod --dir=out
+```
+
+## 📚 Documentación
+
+- [DEMO_MODE.md](./DEMO_MODE.md) - Guía del modo demostración
+- [DEPLOY.md](./DEPLOY.md) - Guía de despliegue
+- [CHANGES.md](./CHANGES.md) - Resumen de cambios
+
+## 🔐 Seguridad
+
+✅ Modo demo seguro (no accesa datos reales)
+✅ Web estática sin servidor dinámico
+✅ Ideal para demostración a clientes
+
+## 📞 Contacto
+
+soymikevazquez@gmail.com
+
+---
+
+**Versión:** 0.2.0 | **Fecha:** 2026-06-23
