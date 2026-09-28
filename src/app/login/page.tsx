@@ -12,7 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const theme = 'white';
+  const [theme, setTheme] = useState<'white' | 'black'>('white');
   const [gifStyle, setGifStyle] = useState<React.CSSProperties>({});
   const [checkingSession, setCheckingSession] = useState(true);
 
@@ -43,6 +43,10 @@ export default function Login() {
   useEffect(() => {
     let mounted = true;
     randomizePosition();
+    
+    if (mounted) {
+      setTheme(Math.random() > 0.5 ? 'white' : 'black');
+    }
     
     const handleResize = () => randomizePosition();
     window.addEventListener("resize", handleResize);
@@ -169,7 +173,7 @@ export default function Login() {
   };
 
   return (
-    <div className={`${styles.loginContainer} ${styles.themeWhite}`}>
+    <div className={`${styles.loginContainer} ${theme === 'white' ? styles.themeWhite : styles.themeBlack}`}>
       {/* Dynamic Background Mesh Gradients */}
       <div className={styles.gradientOrb1} />
       <div className={styles.gradientOrb2} />
@@ -180,7 +184,7 @@ export default function Login() {
         className={`${styles.gifBackground} ${styles.gifVisible}`}
         style={{
           ...gifStyle,
-          backgroundImage: "url('/para-fondo-blanco.gif')"
+          backgroundImage: theme === 'white' ? "url('/para-fondo-blanco.gif')" : "url('/para-fondo-negro.gif')"
         }}
       />
 
@@ -234,7 +238,41 @@ export default function Login() {
               onClick={handleDemoMode}
               disabled={loading}
             >
-              📊 Ver Demostración
+              <svg
+                className={styles.buttonIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+              <span>Ver Demostración</span>
+            </button>
+            <button
+              type="button"
+              className={styles.faqButton}
+              onClick={() => router.push("/faq")}
+              disabled={loading}
+            >
+              <svg
+                className={styles.buttonIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span>Preguntas frecuentes</span>
             </button>
           </div>
         </div>

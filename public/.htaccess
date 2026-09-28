@@ -1,0 +1,62 @@
+# Prevent directory browsing
+Options -Indexes
+
+# Set MIME types for gzip files
+AddType text/html .gz
+AddType application/javascript .gz
+AddType text/css .gz
+AddType application/json .gz
+AddType image/svg+xml .gz
+
+# Enable rewriting
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve pre-compressed gzip files if the client supports it and the .gz file exists
+  RewriteCond %{HTTP:Accept-Encoding} gzip
+  RewriteCond %{REQUEST_FILENAME}.gz -f
+  RewriteRule ^(.*)$ $1.gz [L]
+
+  # Set correct Content-Encoding and Content-Type header for .gz files
+  <FilesMatch "\.html\.gz$">
+    ForceType text/html
+    Header set Content-Encoding gzip
+  </FilesMatch>
+  <FilesMatch "\.js\.gz$">
+    ForceType application/javascript
+    Header set Content-Encoding gzip
+  </FilesMatch>
+  <FilesMatch "\.css\.gz$">
+    ForceType text/css
+    Header set Content-Encoding gzip
+  </FilesMatch>
+  <FilesMatch "\.json\.gz$">
+    ForceType application/json
+    Header set Content-Encoding gzip
+  </FilesMatch>
+  <FilesMatch "\.svg\.gz$">
+    ForceType image/svg+xml
+    Header set Content-Encoding gzip
+  </FilesMatch>
+
+  # SPA Routing: If the requested path is not a physical file or directory, 
+  # and the request doesn't end with a slash, let Apache handle trailing slashes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteRule ^(.*)/$ /$1/index.html [L]
+
+  # Fallback for paths without trailing slashes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+
+  # Default fallback to 404.html if file/folder doesn't exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteRule ^.*$ /404.html [L]
+</IfModule>

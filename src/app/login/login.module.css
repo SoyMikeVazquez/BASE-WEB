@@ -494,6 +494,10 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .themeBlack .demoButton {
@@ -531,5 +535,72 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+.faqButton {
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.themeBlack .faqButton {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.themeBlack .faqButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.themeWhite .faqButton {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #334155;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.themeWhite .faqButton:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.09);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.faqButton:active {
+  transform: translateY(0);
+}
+
+.faqButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+  stroke: #000000 !important; /* Forces the icon stroke to be solid black */
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.demoButton:hover .buttonIcon,
+.faqButton:hover .buttonIcon {
+  transform: scale(1.1);
 }
 
